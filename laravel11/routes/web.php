@@ -11,9 +11,9 @@ Route::get('/about', function () {
 });
 
 Route::get('/blog', function () {
-    return view('blog', array('judul' => 'Lorem Ipsum 1', 'isi' => 'Lorem ipsum dolor sit amet.'));
+    return view('blog');
 });
 
 Route::get('/contact', function () {
-    return view('contact', array('email' => 'haidar.223040093@mail.unpas.ac.id'));
+    return view('contact');
 });

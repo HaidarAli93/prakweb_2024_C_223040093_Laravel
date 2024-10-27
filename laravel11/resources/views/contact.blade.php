@@ -13,6 +13,9 @@
 	<h1>Halaman Contact</h1>
 	<hr />
 
-	<h3>Email: {{ $email }}</h3>
+	<ul>
+		<li><a href="https://www.instagram.com/ocakaco__">Instagram</a></li>
+		<li><a href="https://github.com/HaidarAli93">Github</a></li>
+	</ul>
 </body>
 </html>
