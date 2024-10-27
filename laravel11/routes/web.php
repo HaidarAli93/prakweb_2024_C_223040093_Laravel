@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Support\Arr;
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -12,47 +12,11 @@ Route::get('/about', function () {
 });
 
 Route::get('/posts', function () {
-	return view('posts', array('title' => 'Blog Page', 'posts' => array(
-		array(
-			'id' => 1,
-			'slug' => 'judul-artikel-1',
-			'title' => 'Judul Artikel 1',
-			'author' => 'Haidar Ali',
-			'body' => 'Lorem ipsum odor amet, consectetuer adipiscing elit. Adipiscing suscipit torquent erat semper maecenas urna ex lectus. Nec montes cras primis tincidunt suspendisse ex sociosqu. Aliquam torquent elementum aenean senectus vulputate donec et urna blandit.'
-		),
-		array(
-			'id' => 2,
-			'slug' => 'judul-artikel-2',
-			'title' => 'Judul Artikel 2',
-			'author' => 'Haidar Ali',
-			'body' => 'Lorem ipsum odor amet, consectetuer adipiscing elit. Nisl amet posuere scelerisque vulputate convallis elementum tempus tellus. Per fringilla quis aliquam montes quisque.'
-		)
-	)));
+	return view('posts', array('title' => 'Blog Page', 'posts' => Post::all()));
 });
 
 Route::get('/posts/{slug}', function($slug) {
-	$posts = array(
-		array(
-			'id' => 1,
-			'slug' => 'judul-artikel-1',
-			'title' => 'Judul Artikel 1',
-			'author' => 'Haidar Ali',
-			'body' => 'Lorem ipsum odor amet, consectetuer adipiscing elit. Adipiscing suscipit torquent erat semper maecenas urna ex lectus. Nec montes cras primis tincidunt suspendisse ex sociosqu. Aliquam torquent elementum aenean senectus vulputate donec et urna blandit.'
-		),
-		array(
-			'id' => 2,
-			'slug' => 'judul-artikel-2',
-			'title' => 'Judul Artikel 2',
-			'author' => 'Haidar Ali',
-			'body' => 'Lorem ipsum odor amet, consectetuer adipiscing elit. Nisl amet posuere scelerisque vulputate convallis elementum tempus tellus. Per fringilla quis aliquam montes quisque.'
-		)
-	);
-
-	$post = Arr::first($posts, function($post) use ($slug) {
-		return $post['slug'] == $slug;
-	});
-
-	return view('post', array('title' => 'Single Post Page', 'post' => $post));
+	return view('post', array('title' => 'Single Post Page', 'post' => Post::find($slug)));
 });
 
 Route::get('/contact', function () {
